@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+{{movie.title}}
+{% endblock page_title %}
+
+{% block content %}
+  <div class="flex justify-center">
+
+    <div class="container-md mx-auto w-1/3 flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-4">
+      <img src="{{movie.cover_image.url}}" class="w-3/4 rounded place-self-center	" alt="">
+      {% if user.is_authenticated %}
+        {% include "mixins/fav_button.html" with obj=movie kind='movie' %}
+      {% endif %}
+      <span class="text-xl font-bold my-2">{{movie.title}}</span>
+      <span class="text-sm mr-1" >{{movie.year}} {{movie.category}}</span>
+      <span class="text-xs mr-1"> 평점 <i class="fas fa-star text-red-500 text-xs mr-1"></i>{{movie.rating}}</span>
+      <div>
+        <div>Director : {{movie.director}}</div>
+        <div>
+          <span class="font-bold">Casting</span>
+          <div class="flex flex-col">
+            {% for cast in movie.cast.all %}
+            <span class="">{{cast}}</span> 
+            {% endfor %}
+          </div>
+        </div>
+        
+      </div>
+      
+      <hr/>
+      <span  class="font-medium text-2xl text-center w-full block mb-5"> Reviews</span>
+      <hr/>
+      {% for review in movie.reviews.all %}
+        <p><span class="text-xs mr-1"> <i class="fas fa-star text-red-500 text-xs mr-1"></i>{{review.rating}}</span>{{review.text}}({{review.created_by}})</p>
+      {% endfor %}
+      {% if user.is_authenticated %}
+      <span class="font-medium text-2xl text-center w-full block mb-5">Write your review</span>
+      <form action="{% url 'reviews:create' movie.pk %}" method="POST" class="w-1/2 mx-auto">
+          {% csrf_token %}
+          <input type="hidden" name="type" value="movie">
+          {{review_form}}
+          <button class="btn-link mt-5">Submit Review</button>
+      </form>
+      {% endif %}
+      <div class="bg-pink-500 hover:bg-pink-700 text-white font-bold rounded w-full mt-4 py-2 px-4 flex justify-center ">
+        <a class="mx-auto " href="{% url 'movies:update' movie.pk %}">Edit Movie</a>
+      </div>
+
+    </div>
+
+
+  </div>
+
+{% endblock content %}

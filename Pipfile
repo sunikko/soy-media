@@ -8,6 +8,7 @@ Django = "==2.2.5"
 django-seed = "*"
 lists = "*"
 pillow = "*"
+django-environ = "*"
 
 [dev-packages]
 

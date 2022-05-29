@@ -32,7 +32,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-#CSRF_TRUSTED_ORIGINS = ['soytech.cf','*.soytech.cf']
+CSRF_TRUSTED_ORIGINS = ['soytech.cf','*.soytech.cf']
 
 # Application definition
 

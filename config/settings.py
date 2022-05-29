@@ -32,7 +32,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['soytech.cf','*.soytech.cf']
+#CSRF_TRUSTED_ORIGINS = ['soytech.cf','*.soytech.cf']
 
 # Application definition
 
@@ -65,7 +65,7 @@ THIRD_PARTY_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS 
 
 MIDDLEWARE = [
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

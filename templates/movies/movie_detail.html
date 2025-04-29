@@ -8,7 +8,8 @@
   <div class="flex justify-center">
 
     <div class="container-md mx-auto w-1/3 flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-4">
-      <img src="{{movie.cover_image.url}}" class="w-3/4 rounded place-self-center	" alt="">
+      {% comment %} <img src="{{movie.cover_image.url}}" class="w-3/4 rounded place-self-center	" alt=""> {% endcomment %}
+      <img src="https://picsum.photos/id/{{ movie.pk }}/200/300" class="w-3/4 rounded place-self-center	" alt="">
       {% if user.is_authenticated %}
         {% include "mixins/fav_button.html" with obj=movie kind='movie' %}
       {% endif %}

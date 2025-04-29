@@ -2,7 +2,8 @@
   <div class=" mb-6 px-2">
     <a href="{% url 'movies:movie' movie.pk %}">
       <div class="flex flex-col">
-        <div class="h-64 bg-cover bg-center rounded-lg mb-2 " style="background-image: url({{movie.cover_image.url}});"></div>
+        {% comment %} <div class="h-64 bg-cover bg-center rounded-lg mb-2 " style="background-image: url({{movie.cover_image.url}});"></div> {% endcomment %}
+        <div class="h-64 bg-cover bg-center rounded-lg mb-2 " style="background-image: url(https://picsum.photos/id/{{ movie.pk }}/200/300);"></div>
         <span class="text-lg font-bold">{{movie.title}}</span>
         <span class="text-sm mr-1" >{{movie.year}}</span>
         <span class="text-xs mr-1"> 평점 <i class="fas fa-star text-red-500 text-xs mr-1"></i>{{movie.rating}}</span>
